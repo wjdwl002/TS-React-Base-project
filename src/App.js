@@ -1,3 +1,4 @@
+import firebase from './firebase'
 
 function App() {
   return (
