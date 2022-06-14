@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Auth from 'routes/Auth';
 import Home from 'routes/Home';
 import firebase from 'firebase/compat/app';
@@ -9,11 +9,15 @@ interface IProps {
 }
 
 const Router: React.FC<IProps> = ({ isLoggedIn }) => (
-  <Route>
+  <BrowserRouter>
     <Routes>
-      <Auth />
+      {isLoggedIn ? (
+        <Route path="/home" element={<Home />} />
+      ) : (
+        <Route path="/" element={<Auth />} />
+      )}
     </Routes>
-  </Route>
+  </BrowserRouter>
 );
 
 export default Router;
